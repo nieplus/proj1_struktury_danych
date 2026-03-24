@@ -30,7 +30,7 @@ void DynamicArray::resizeDown(){
 }
 void DynamicArray::addFront(int val){
     if (size == capacity) resize();
-    for(unsigned int i = size - 1; i >= 0; i--)
+    for(int i = size; i > 0; --i)
     {
         data[i] = data[i - 1];
     }
@@ -39,20 +39,25 @@ void DynamicArray::addFront(int val){
 }
 void DynamicArray::addEnd(int val){
     if(size == capacity) resize();
-    data[size - 1] = val;
+    data[size] = val;
     size++;
 }
-void DynamicArray::addAtIndex(int index, int val){
+void DynamicArray::addAtIndex(int idx, int val){
     if(size == capacity) resize();
-    for(unsigned int i = size - 1; i >= index; i--)
+    if(idx < 0 || idx >= size) return;
+    for(int i = size; i > idx; --i)
     {
         data[i] = data[i - 1];
     }
-    data[index] = val;
+    data[idx] = val;
     size++;
 }
 void DynamicArray::removeFront(){
-    for(unsigned int i = 0; i < size - 1; i++)
+    if (capacity == 1 || capacity == 0) {
+        size = 0;
+        return;
+    }
+    for(int i = 0; i < size - 1; i++)
     {
         data[i] = data[i + 1];
     }
@@ -64,7 +69,8 @@ void DynamicArray::removeEnd(){
     if(capacity > 1 && size < capacity / 2) resizeDown();
 }
 void DynamicArray::removeAtIndex(int idx){
-    for(unsigned int i = idx; i < size - 1; i++)
+    if(idx < 0 || idx >= size) return; // Index nie w zasięgu
+    for(int i = idx; i < size - 1; i++)
     {
         data[i] = data[i + 1];
     }
@@ -72,7 +78,7 @@ void DynamicArray::removeAtIndex(int idx){
     if(capacity > 1 && size < capacity / 2) resizeDown();
 }
 int DynamicArray::find(int val){
-    for(unsigned int i = 0; i < size; i++)
+    for(int i = 0; i < size; i++)
     {
         if(data[i] == val)
             return i;
