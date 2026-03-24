@@ -6,11 +6,11 @@ private:
     int capacity;
     int size;
     void resize();
+    void resizeDown();
 
 public:
     DynamicArray(int n);
     ~DynamicArray();
-
     void addFront(int val);
     void addEnd(int val);
     void addAtIndex(int idx, int val);
