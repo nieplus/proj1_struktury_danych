@@ -57,11 +57,11 @@ void DynamicArray::removeFront(){
         data[i] = data[i + 1];
     }
     size--;
-    if(size < capacity / 2) resizeDown();
+    if(capacity > 1 && size < capacity / 2) resizeDown();
 }
 void DynamicArray::removeEnd(){ 
     size--;
-    if(size < capacity / 2) resizeDown();
+    if(capacity > 1 && size < capacity / 2) resizeDown();
 }
 void DynamicArray::removeAtIndex(int idx){
     for(unsigned int i = idx; i < size - 1; i++)
@@ -69,7 +69,7 @@ void DynamicArray::removeAtIndex(int idx){
         data[i] = data[i + 1];
     }
     size--;
-    if(size < capacity / 2) resizeDown();
+    if(capacity > 1 && size < capacity / 2) resizeDown();
 }
 int DynamicArray::find(int val){
     for(unsigned int i = 0; i < size; i++)
