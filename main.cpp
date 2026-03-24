@@ -1,5 +1,5 @@
 #include<iostream>
-#include"dynamicarray.h"
-#include"linkedlist.h"
+#include"Dynamic_array.h"
+#include"Linked_list.h"
 
 using namespace std;
