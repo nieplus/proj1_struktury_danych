@@ -1,6 +1,7 @@
 #include"Dynamic_array.h"
 
 DynamicArray::DynamicArray(int n): capacity(n), size(0) {
+    if(capacity <= 0) capacity = 1;
     data = new int[capacity];
 }
 
@@ -19,6 +20,8 @@ void DynamicArray::resize(){
     capacity = newCapacity;
 }
 void DynamicArray::resizeDown(){
+    // Zapobieganie zmniejszeniu capacity poniezej rozmiaru
+    if(capacity/2 < size) return;
     int newCapacity = capacity / 2;
     int* newData = new int[newCapacity];
     for(int i = 0; i < size; i++){
@@ -44,7 +47,7 @@ void DynamicArray::addEnd(int val){
 }
 void DynamicArray::addAtIndex(int idx, int val){
     if(size == capacity) resize();
-    if(idx < 0 || idx >= size) return;
+    if(idx < 0 || idx > size) return;
     for(int i = size; i > idx; --i)
     {
         data[i] = data[i - 1];
